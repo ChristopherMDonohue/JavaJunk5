@@ -54,7 +54,7 @@ public class Heap<T> {
         map= new HashMap<>();
     }
 
-    /** c:Add v with priority p to the heap. <br>
+    /** CMD:Add v with priority p to the heap. <br>
      * Throw an illegalArgumentException if v is already in the heap. <br>
      * The expected time is logarithmic and <br>
      * the worst-case time is linear in the size of the heap. */
@@ -154,7 +154,7 @@ public class Heap<T> {
         return compareTo(c[h].priority, c[k].priority);
     }
 
-    /** c:If h >= size, return.<br>
+    /** CMD:If h >= size, return.<br>
      * Otherwise, bubble c[h] up the heap to its right place. <br>
      * Precondition: 0 <= h and, if h < size, <br>
      * ... the class invariant is true, except perhaps that <br>
@@ -182,7 +182,7 @@ public class Heap<T> {
 
     }
 
-    /** c:If this is a min-heap, return the heap value with lowest priority. <br>
+    /** CMD:If this is a min-heap, return the heap value with lowest priority. <br>
      * If this is a max-heap, return the heap value with highest priority.<br>
      * Do not change the heap. <br>
      * This operation takes constant time. <br>
@@ -224,7 +224,7 @@ public class Heap<T> {
         return null;
     }
 
-    /** c:Change the priority of value v to p. <br>
+    /** CMD:Change the priority of value v to p. <br>
      * Expected time: logarithmic. Worst-case time: linear in the size of the heap.<br>
      * Throw an IllegalArgumentException if v is not in the heap. */
     public void changePriority(T v, double p) {
