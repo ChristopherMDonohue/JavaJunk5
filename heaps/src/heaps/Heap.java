@@ -89,6 +89,7 @@ public class Heap<T> {
 
         // The body is most easily written using a method in Collections Framework
         // class Arrays. Look for methods that copy arrays and choose a suitable one.
+    	
 
     }
 
@@ -111,7 +112,7 @@ public class Heap<T> {
         // will find no errors.
         //
         // Read the Assignment A5 note about map.put(...).
-
+        
     }
 
     /** If a value with priority p1 belongs above a value with priority p2 in the heap, <br>
@@ -159,6 +160,9 @@ public class Heap<T> {
         // Inv: 0 <= h < size and<br>
         // The class invariant is true, except perhaps<br>
         // that c[h] belongs above its parent (if h > 0) in the heap, not below it.
+        while(h>0 && compareTo(c[h].priority,c[(h-1)/2].priority)==1) {
+        	swap(h,(h-1)/2);
+        }
 
     }
 
