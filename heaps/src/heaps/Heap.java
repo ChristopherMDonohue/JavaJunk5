@@ -173,7 +173,7 @@ public class Heap<T> {
         // If this method is correct, these testing procs will show no errors:
         // test25MaxPeek() and test25MinPeek
 
-        return null;
+        return c[0].value;
     }
 
     /** e:If h < 0 or size <= h, return.<br>
