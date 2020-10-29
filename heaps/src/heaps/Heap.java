@@ -82,6 +82,7 @@ public class Heap<T> {
     	Item a = new Item(v,p);
     	c[size()] = a;
     	size ++;
+    	map.put(v,size());
     	bubbleUp(size()-1);
     	
 
