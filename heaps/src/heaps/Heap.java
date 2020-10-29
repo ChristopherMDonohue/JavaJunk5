@@ -230,6 +230,15 @@ public class Heap<T> {
     public void changePriority(T v, double p) {
         // TODO 8: When this method correct, these testing procedure will find no errors.
         // test50MaxchangePriority, test50MinchangePriority
+    	int i=map.get(v);
+    	
+    	if(i==-1) {
+    		throw new IllegalArgumentException("v not in heap");	
+    	}
+    	
+    	Item a=new Item(v,p);
+    	c[i]=a;
+    	
 
     }
 
