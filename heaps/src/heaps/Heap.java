@@ -172,7 +172,9 @@ public class Heap<T> {
 
         // If this method is correct, these testing procs will show no errors:
         // test25MaxPeek() and test25MinPeek
-
+    	if (c[0]==null) {
+    		throw new NoSuchElementException("Tree is empty");
+    	}
         return c[0].value;
     }
 
