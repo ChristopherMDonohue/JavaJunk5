@@ -69,6 +69,8 @@ public class Heap<T> {
         // Do NOT call bubbleUp until the class invariant is true
         // (except for the need to bubble up).
         // Calling bubbleUp is the last thing to be done.
+    	Item a=new Item(v,p);
+    	
 
     }
 
@@ -160,8 +162,9 @@ public class Heap<T> {
         // Inv: 0 <= h < size and<br>
         // The class invariant is true, except perhaps<br>
         // that c[h] belongs above its parent (if h > 0) in the heap, not below it.
-        while(h>0 && compareTo(c[h].priority,c[(h-1)/2].priority)==1) {
+        while(h>0 && compareTo(h,(h-1)/2)==1) {
         	swap(h,(h-1)/2);
+        	h=(h-1)/2;
         }
 
     }
