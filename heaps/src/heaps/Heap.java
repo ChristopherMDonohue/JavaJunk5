@@ -11,6 +11,7 @@ package heaps;
 import java.lang.reflect.Array;
 import java.util.*;
 
+
 /** An instance is a max-heap or a min-heap of distinct values of type T <br>
  * with priorities of type double. */
 public class Heap<T> {
@@ -69,7 +70,19 @@ public class Heap<T> {
         // Do NOT call bubbleUp until the class invariant is true
         // (except for the need to bubble up).
         // Calling bubbleUp is the last thing to be done.
-    	Item a=new Item(v,p);
+    	if (map.get(v)!=null) {
+    		throw new IllegalArgumentException("v already in heap");
+    	}
+    	
+    	
+    	if (size() == c.length) {
+    		fixCapacity();
+    	}
+    	
+    	Item a = new Item(v,p);
+    	c[size()] = a;
+    	size ++;
+    	bubbleUp(size()-1);
     	
 
     }
