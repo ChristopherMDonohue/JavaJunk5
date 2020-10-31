@@ -407,7 +407,6 @@ class HeapTest {
     public void test25MinPeek() {
         Heap<Integer> mh= griesHeapifyMin(new Integer[] { 1, 3 });
         // String msg= "Testing peek on heap [1, 3] --values are priorities";
-        System.out.println(mh.peek());
         assertEquals(1, mh.peek());
         check(new Integer[] { 1, 3 }, new double[] { 1.0, 3.0 }, mh);
 
