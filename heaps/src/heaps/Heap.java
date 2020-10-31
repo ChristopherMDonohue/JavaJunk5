@@ -9,8 +9,9 @@ package heaps;
  */
 
 import java.lang.reflect.Array;
-import java.util.*;
-
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.NoSuchElementException;
 
 /** An instance is a max-heap or a min-heap of distinct values of type T <br>
  * with priorities of type double. */
@@ -70,21 +71,18 @@ public class Heap<T> {
         // Do NOT call bubbleUp until the class invariant is true
         // (except for the need to bubble up).
         // Calling bubbleUp is the last thing to be done.
-    	if (map.get(v)!=null) {
-    		throw new IllegalArgumentException("v already in heap");
-    	}
-    	
-    	
-    	if (size() == c.length) {
-    		fixCapacity();
-    	}
-    	
-    	Item a = new Item(v,p);
-    	c[size()] = a;
-    	size ++;
-    	map.put(v,size());
-    	bubbleUp(size()-1);
-    	
+        if (map.get(v) != null) { throw new IllegalArgumentException("v already in heap"); }
+
+        if (size() == c.length) {
+            fixCapacity();
+        }
+
+        Item a= new Item(v, p);
+        c[size()]= a;
+        map.put(v, size());
+        size++ ;
+        // map.put(v, size()); moved this to being above size++
+        bubbleUp(size() - 1);
 
     }
 
@@ -105,8 +103,9 @@ public class Heap<T> {
 
         // The body is most easily written using a method in Collections Framework
         // class Arrays. Look for methods that copy arrays and choose a suitable one.
-    	
-
+        if (size == c.length) {
+            c= Arrays.copyOf(c, c.length * 2);
+        }
     }
 
     /** Return the size of this heap. <br>
@@ -128,7 +127,12 @@ public class Heap<T> {
         // will find no errors.
         //
         // Read the Assignment A5 note about map.put(...).
-        
+        Item holdH= c[h];
+        Item holdK= c[k];
+        map.put(holdH.value, k);
+        map.put(holdK.value, h);
+        c[h]= holdK;
+        c[k]= holdH;
     }
 
     /** If a value with priority p1 belongs above a value with priority p2 in the heap, <br>
@@ -176,9 +180,9 @@ public class Heap<T> {
         // Inv: 0 <= h < size and<br>
         // The class invariant is true, except perhaps<br>
         // that c[h] belongs above its parent (if h > 0) in the heap, not below it.
-        while(h>0 && compareTo(h,(h-1)/2)==1) {
-        	swap(h,(h-1)/2);
-        	h=(h-1)/2;
+        while (h > 0 && compareTo(h, (h - 1) / 2) == 1) {
+            swap(h, (h - 1) / 2);
+            h= (h - 1) / 2;
         }
 
     }
@@ -193,9 +197,7 @@ public class Heap<T> {
 
         // If this method is correct, these testing procs will show no errors:
         // test25MaxPeek() and test25MinPeek
-    	if (c[0]==null) {
-    		throw new NoSuchElementException("Tree is empty");
-    	}
+        if (c[0] == null) { throw new NoSuchElementException("Tree is empty"); }
         return c[0].value;
     }
 
@@ -210,7 +212,22 @@ public class Heap<T> {
         // TODO 6: DO NOT USE RECURSION. Use iteration.
         // When this method is correct, these testing procedures will find no errors:
         // test30MinBubbledown, test31MaxBubble..., and test31MinBubble...
-
+        if (h < 0 || size <= h) { return; }
+        int k1= 2 * h + 1;
+        int k2= 2 * h + 2;
+        while (k1 < size) {
+            if (k2 < size && compareTo(h, k2) == -1 && compareTo(k1, k2) == -1) {
+                swap(h, k2);
+                h= k2;
+            } else if (compareTo(h, k1) == -1) {
+                swap(h, k1);
+                h= k1;
+            } else {
+                return;
+            }
+            k1= 2 * h + 1;
+            k2= 2 * h + 2;
+        }
     }
 
     /** e:If this is a min-heap, remove and return heap value with lowest priority. <br>
@@ -221,8 +238,14 @@ public class Heap<T> {
         // TODO 7: When this method correct, these testing procedure will find no errors:
         // test32Poll_BubbleDown_NoDups,
         // test33Poll, test34Poll, test40DuplicatePriorities
-
-        return null;
+        if (size == 0) { throw new NoSuchElementException(); }
+        T polled= c[0].value;
+        swap(0, size - 1);
+        c[size - 1]= null;
+        map.remove(polled);
+        size= size - 1;
+        bubbleDown(0);
+        return polled;
     }
 
     /** CMD:Change the priority of value v to p. <br>
@@ -231,15 +254,12 @@ public class Heap<T> {
     public void changePriority(T v, double p) {
         // TODO 8: When this method correct, these testing procedure will find no errors.
         // test50MaxchangePriority, test50MinchangePriority
-    	int i=map.get(v);
-    	
-    	if(i==-1) {
-    		throw new IllegalArgumentException("v not in heap");	
-    	}
-    	
-    	Item a=new Item(v,p);
-    	c[i]=a;
-    	
+        int i= map.get(v);
+
+        if (i == -1) { throw new IllegalArgumentException("v not in heap"); }
+
+        Item a= new Item(v, p);
+        c[i]= a;
 
     }
 
