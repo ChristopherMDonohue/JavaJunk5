@@ -631,7 +631,7 @@ class HeapTest {
 
     }
 
-    // @Test
+    @Test
     /** Test changePriority in a max-heap. */
     public void test50MaxchangePriority() {
         // First three: bubble up tests
@@ -672,7 +672,7 @@ class HeapTest {
         assertThrows(IllegalArgumentException.class, () -> { mh7.changePriority(6, 5.0); });
     }
 
-    // @Test
+    @Test
     /** Test changePriority in a min-heap. */
     public void test50MinchangePriority() {
         // First three: bubble up tests
@@ -713,7 +713,7 @@ class HeapTest {
         assertThrows(IllegalArgumentException.class, () -> { mh7.changePriority(6, 5.0); });
     }
 
-    // @Test
+    @Test
     /** Test a few calls with Strings */
     public void test70Strings() {
         Heap<String> mh= new Heap<>(true);
@@ -730,7 +730,7 @@ class HeapTest {
         check(new String[] { "abc", null }, new double[] { 5.0, 7.0 }, mh);
     }
 
-    // @Test
+    @Test
     /** Test using values in 0..999 and random values for the priorities. <br>
      * There will be duplicate priorities. */
     public void test90BigTests() {
