@@ -8,9 +8,10 @@ import java.util.HashMap;
 import java.util.NoSuchElementException;
 
 import org.junit.jupiter.api.MethodOrderer.Alphanumeric;
-import org.junit.jupiter.api.MethodOrderer.Random;
+//import org.junit.jupiter.api.MethodOrderer.Random;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import java.util.Random;
 
 @TestMethodOrder(Alphanumeric.class)
 class HeapTest {
@@ -740,7 +741,9 @@ class HeapTest {
             b[k]= k;
         }
 
-        Random rand= new Random(52);
+        long i=52;
+        Random rand= new Random();
+        rand.setSeed(i);
 
         // bp: priorities of the values
         double[] bp= new double[b.length];
@@ -769,7 +772,7 @@ class HeapTest {
             previousPriority= p;
         }
         boolean finalInOrder= inOrder;
-        assertEquals("Polled values are in order", true, finalInOrder);
+        assertEquals( true, finalInOrder,"Polled values are in order");
     }
 
     /** Poll all elements of m into b. <br>
