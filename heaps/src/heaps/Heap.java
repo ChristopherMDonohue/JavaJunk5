@@ -241,9 +241,9 @@ public class Heap<T> {
         if (size == 0) { throw new NoSuchElementException(); }
         T polled= c[0].value;
         swap(0, size - 1);
-        c[size - 1]= null;
+        c[size - 1] = null;
         map.remove(polled);
-        size= size - 1;
+        size = size - 1;
         bubbleDown(0);
         return polled;
     }
@@ -254,12 +254,19 @@ public class Heap<T> {
     public void changePriority(T v, double p) {
         // TODO 8: When this method correct, these testing procedure will find no errors.
         // test50MaxchangePriority, test50MinchangePriority
-        int i= map.get(v);
+        Integer i= map.get(v);
 
-        if (i == -1) { throw new IllegalArgumentException("v not in heap"); }
+        if (i==null) { throw new IllegalArgumentException("v not in heap"); }
 
         Item a= new Item(v, p);
         c[i]= a;
+        
+        if (i>0 && compareTo(i,(i-1)/2)==1) {
+        	bubbleUp(i);
+        }
+        else {
+        	bubbleDown(i);
+        }
 
     }
 
