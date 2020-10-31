@@ -4,8 +4,12 @@ package heaps;
 
  * Name(s): Elena (Krazy) Peot, Christopher (Mystery) Donohue
  * What I thought about this assignment:
- *
- *
+ * "I like bubbles" -Elena Peot, 2020
+ * "I'm indifferent to bubbles (since I'm not 3)" -Christopher M. Donohue. 2020
+ * The code didn't work work for the tests since something in the provided code was off.
+ * So clean up your act guys! Use some of those bubbles!!!
+ * Can we get an assignment where's it's not just write 7 or so functions in one class.
+ * Like it's the point of this class to use object-oriented junk, right?!
  */
 
 import java.lang.reflect.Array;
@@ -21,7 +25,7 @@ public class Heap<T> {
      * Example: for 3 hours 15 minutes, use 3.25<br>
      * Example: for 4 hours 30 minutes, use 4.50<br>
      * Example: for 5 hours, use 5 or 5.0 */
-    public static double timeSpent= -1;
+    public static double timeSpent= 4.45;
 
     /** Class Invariant: <br>
      * 1. c[0..size-1] represents a complete binary tree.<br>
@@ -71,17 +75,16 @@ public class Heap<T> {
         // Do NOT call bubbleUp until the class invariant is true
         // (except for the need to bubble up).
         // Calling bubbleUp is the last thing to be done.
-        if (map.get(v) != null) { throw new IllegalArgumentException("v already in heap"); }
+        if (map.get(v) != null) { 
+        	throw new IllegalArgumentException("v already in heap"); 
+        	}
 
-        if (size() == c.length) {
-            fixCapacity();
-        }
+        fixCapacity();
 
         Item a= new Item(v, p);
-        c[size()]= a;
+        c[size()] = a;
         map.put(v, size());
         size++ ;
-        // map.put(v, size()); moved this to being above size++
         bubbleUp(size() - 1);
 
     }
