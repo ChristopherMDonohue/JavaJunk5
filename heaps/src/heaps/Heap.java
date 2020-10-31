@@ -86,7 +86,7 @@ public class Heap<T> {
         map.put(v, size());
         size++ ;
         bubbleUp(size() - 1);
-
+        
     }
 
     /** e:If size = length of c, double the length of array c. <br>
